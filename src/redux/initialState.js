@@ -1,5 +1,38 @@
 const initialState = {
-    posts: []
+	posts: [
+		{
+		id: '1',
+		title: 'Article#1',
+		shortDescription: 'Short description of article#1...',
+		content: 'Main content of article#1...',
+		publishedDate: '02-03-2023',
+		author: 'John Doe'
+		},
+		{
+		id: '2',
+		title: 'Article#2',
+		shortDescription: 'Short description of article#2...',
+		content: 'Main content of article#2...',
+		publishedDate: '02-03-2023',
+		author: 'Amanda Doe'
+		},
+		{
+		id: '3',
+		title: 'Article#3',
+		shortDescription: 'Short description of article#3...',
+		content: 'Main content of article#3...',
+		publishedDate: '14-03-2023',
+		author: 'John Doe'
+		},
+		{
+		id: '4',
+		title: 'Article#4',
+		shortDescription: 'Short description of article#4...',
+		content: 'Main content of article#4...',
+		publishedDate: '01-04-2023',
+		author: 'John Doe'
+		}
+	]
 };
 
 export default initialState;
