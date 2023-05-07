@@ -1,8 +1,7 @@
-import {useParams} from "react-router-dom";
+import {useParams, Link, Navigate} from "react-router-dom";
 import {useSelector, useDispatch} from "react-redux";
 import {getPostById, removePost} from "../../../redux/postsRedux";
 import {Button, Modal} from "react-bootstrap";
-import {Link, Navigate} from "react-router-dom";
 import {useState} from "react";
 
 const SinglePost = props => {
