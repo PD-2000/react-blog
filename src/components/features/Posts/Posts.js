@@ -7,9 +7,9 @@ const Posts = () => {
 	const posts = useSelector(getAllPosts);
 	
 	return (
-	<Row className="justify-content-between">
-		{posts.map(post => <Post key={post.id} {...post} />)}
-	</Row>
+		<Row>
+			{posts.map(post => <Post key={post.id} {...post} />)}
+		</Row>
 	);
 };
 

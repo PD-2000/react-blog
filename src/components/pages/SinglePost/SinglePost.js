@@ -7,13 +7,11 @@ import {useState} from "react";
 const SinglePost = props => {
 	const {id} = useParams();
 	const postData = useSelector(state => getPostById(state, id));
-
 	const [show, setShow] = useState(false);
-	const handleClose = () => setShow(false);
-	const handleShow = () => setShow(true)
-		
 	const dispatch = useDispatch();
 
+	const handleClose = () => setShow(false);
+	const handleShow = () => setShow(true)
 	const deletePost = () => {
 		dispatch(removePost(id));
 		handleClose();
@@ -21,10 +19,10 @@ const SinglePost = props => {
 
 	if(!postData)
 		return <Navigate to="/" />
-	return (
-		<div>
+	return(
+		<>
 			<div className="d-flex justify-content-between">
-				<h2>{postData.title}</h2>
+				<h1>{postData.title}</h1>
 				<div>
 					<Link key={props.id} to={"/post/edit/" + id}>
 						<Button variant="outline-info m-1">Edit post</Button>
@@ -37,7 +35,6 @@ const SinglePost = props => {
 				<br/><b>Published: </b>{postData.publishedDate}
 			</p>
 			<p>{postData.shortDescription}</p>
-
 			<Modal show={show} onHide={handleClose}>
 				<Modal.Header closeButton>
 					<Modal.Title>Are you sure?</Modal.Title>
@@ -48,7 +45,7 @@ const SinglePost = props => {
 					<Button onClick={handleClose} variant="secondary">Cancel</Button>
 				</Modal.Footer>
 			</Modal>
-		</div>
+		</>
 	);
 };
 

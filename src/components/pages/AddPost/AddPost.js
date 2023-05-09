@@ -1,9 +1,9 @@
 import AddPostForm from "../../features/AddPostForm/AddPostForm";
 
 const AddPost = () => {
-	return (
+	return(
 		<>
-			<p className="text-center" >AddPost</p>
+			<h1>Add post</h1>
 			<AddPostForm />
 		</>
 	);
