@@ -1,16 +1,21 @@
 import {Form, Button} from "react-bootstrap";
 import {useState} from "react";
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.snow.css";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import styles from "./PostForm.module.scss";
 
 const PostForm = ({action, actionText, ...props}) => {
 	const [title, setTitle] = useState(props.title || '');
 	const [shortDescription, setShortDescription] = useState(props.shortDescription || '');
 	const [author, setAuthor] = useState(props.author || '');
 	const [publishedDate, setPublishedDate] = useState(props.publishedDate || '');
-	const [content, setContent] = useState(props.content || '');
+	const [mainContent, setMainContent] = useState(props.mainContent || '');
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		action({title, shortDescription, author, publishedDate, content});
+		action({title, shortDescription, author, publishedDate, mainContent});
 	};
 
 	return(
@@ -26,15 +31,16 @@ const PostForm = ({action, actionText, ...props}) => {
 				</Form.Group>
 				<Form.Group className="mb-4">
 					<Form.Label>Published date</Form.Label>
-					<Form.Control value={publishedDate} onChange={e => setPublishedDate(e.target.value)} />
+					<DatePicker selected={publishedDate} onChange={(date) => setPublishedDate(date)} />
 				</Form.Group>
 				<Form.Group className="mb-4">
 					<Form.Label>Short description</Form.Label>
-					<Form.Control as="textarea" rows={2} value={shortDescription} onChange={e => setShortDescription(e.target.value)} />
+					<ReactQuill className={styles.shortDescription} value={shortDescription} onChange={setShortDescription} />
 				</Form.Group>
 				<Form.Group className="mb-4">
 					<Form.Label>Main content</Form.Label>
-					<Form.Control as="textarea" rows={10} value={content} onChange={e => setContent(e.target.value)} />
+					<ReactQuill className={styles.mainContent} value={mainContent} onChange={setMainContent}>
+					</ReactQuill>
 				</Form.Group>
 				<Button onClick={handleSubmit} variant="primary" type="submit">
 					Add post

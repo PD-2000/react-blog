@@ -3,6 +3,7 @@ import {useSelector, useDispatch} from "react-redux";
 import {getPostById, removePost} from "../../../redux/postsRedux";
 import {Button, Modal} from "react-bootstrap";
 import {useState} from "react";
+import { dateToStr } from "../../../utils/dateToStr";
 
 const SinglePost = props => {
 	const {id} = useParams();
@@ -32,9 +33,9 @@ const SinglePost = props => {
 			</div>
 			<p>
 				<b>Author: </b>{postData.author}
-				<br/><b>Published: </b>{postData.publishedDate}
+				<br/><b>Published: </b>{dateToStr(postData.publishedDate)}
 			</p>
-			<p>{postData.shortDescription}</p>
+			<p dangerouslySetInnerHTML={{__html: postData.mainContent}} />
 			<Modal show={show} onHide={handleClose}>
 				<Modal.Header closeButton>
 					<Modal.Title>Are you sure?</Modal.Title>
