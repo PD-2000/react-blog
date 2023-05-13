@@ -3,7 +3,7 @@ import {useSelector, useDispatch} from "react-redux";
 import {getPostById, removePost} from "../../../redux/postsRedux";
 import {Button, Modal} from "react-bootstrap";
 import {useState} from "react";
-import { dateToStr } from "../../../utils/dateToStr";
+import {dateToStr} from "../../../utils/dateToStr";
 
 const SinglePost = props => {
 	const {id} = useParams();
