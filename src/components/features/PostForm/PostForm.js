@@ -6,12 +6,16 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import styles from "./PostForm.module.scss";
 import {useForm} from "react-hook-form";
+import {getAllCategories} from "../../../redux/categoriesRedux";
+import {useSelector} from "react-redux";
 
 const PostForm = ({action, actionText, ...props}) => {
 	const {register, handleSubmit: validate, formState: {errors}} = useForm();
 	const [title, setTitle] = useState(props.title || '');
 	const [author, setAuthor] = useState(props.author || '');
 	const [publishedDate, setPublishedDate] = useState(new Date());
+	const [category, setCategory] = useState(props.category || '');
+	const categories = useSelector(getAllCategories);
 	const [shortDescription, setShortDescription] = useState(props.shortDescription || '');
 	const [mainContent, setMainContent] = useState(props.mainContent || '');
 	const [publishedDateError, setPublishedDateError] = useState(false);
@@ -21,7 +25,7 @@ const PostForm = ({action, actionText, ...props}) => {
 		setPublishedDateError(!publishedDate)
 		setMainContentError(!mainContent)
 		if(mainContent && publishedDate)
-			action({title, author, publishedDate, shortDescription, mainContent});
+			action({title, author, publishedDate, category, shortDescription, mainContent});
 	};
 
 	return(
@@ -55,7 +59,19 @@ const PostForm = ({action, actionText, ...props}) => {
 						selected={publishedDate}
 						onChange={(date) => setPublishedDate(date)}
 					/>
-					{publishedDateError && <small className="d-block form-text text-danger mt-2">Date is required.</small>}
+					{publishedDateError && <small className="d-block form-text text-danger mt-2">Date required.</small>}
+				</Form.Group>
+				<Form.Group className="mb-4">
+					<Form.Label>Category</Form.Label>
+					<Form.Select
+						value={category}
+						onChange={e => setCategory(e.target.value)}
+					>
+						<option>Select category:</option>
+						<option>{categories[0]}</option>
+						<option>{categories[1]}</option>
+						<option>{categories[2]}</option>
+					</Form.Select>
 				</Form.Group>
 				<Form.Group className="mb-4">
 					<Form.Label>Short description</Form.Label>

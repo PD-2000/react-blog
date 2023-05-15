@@ -14,6 +14,7 @@ const NavBar = () => {
 			<Navbar.Collapse id="responsive-navbar-nav">
 			<Nav className="ms-auto flex-md-row">
 				<Nav.Link as={NavLink} to="/">Home</Nav.Link>
+				<Nav.Link as={NavLink} to="/categories">Categories</Nav.Link>
 				<Nav.Link as={NavLink} to="/about">About</Nav.Link>
 			</Nav>
 			</Navbar.Collapse>
